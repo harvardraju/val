@@ -1,0 +1,17 @@
+package com.sample.rules
+ 
+import com.sample.CssfdDroolsDemo01.Message;
+ 
+rule "GufiIsUUID"
+    when
+        m : Message( gufi  matches "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}", myGufi : gufi )
+    then
+        System.out.println( "This GUFI is in UUID format: " + myGufi );
+end
+
+rule "GUFIIsNotUUID"
+    when
+        m : Message( gufi  not matches "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}", myGufi : gufi )
+    then
+        System.out.println( "This GUFI is NOT in UUID format: " + myGufi );
+end
